@@ -1,5 +1,4 @@
 require("dotenv").config();
-const fetch = require("node-fetch");
 const {
   IntentsBitField,
   Client,
@@ -250,7 +249,7 @@ client.on("messageCreate", async (message) => {
     try {
       let newJoke = async () => {
         let result = await fetch(
-          "https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,racist,sexist,explicit&type=single"
+          "https://v2.jokeapi.dev/joke/Programming,Miscellaneous?blacklistFlags=nsfw,religious,political,racist,sexist,explicit"
         );
         let json = await result.json();
         return json;
