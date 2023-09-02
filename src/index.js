@@ -338,7 +338,30 @@ client.on("interactionCreate", async (interaction) => {
   if (!interaction.isChatInputCommand()) {
     return;
   }
+  if (interaction.isButton()) {
+    const user = interaction.user;
+    console.log("Received interaction:", interaction.customId);
+    // Acknowledge the interaction
+    await interaction.deferUpdate();
 
+    if (interaction.customId === "like") {
+      await interaction.followUp(
+        `You clicked the Like button, ${user.username}!`
+      );
+    } else if (interaction.customId === "love") {
+      await interaction.followUp(
+        `You clicked the Love button, ${user.username}!`
+      );
+    } else if (interaction.customId === "fun") {
+      await interaction.followUp(
+        `You clicked the Having Fun button, ${user.username}!`
+      );
+    } else if (interaction.customId === "learn") {
+      await interaction.followUp(
+        `You clicked the Exploring button, ${user.username}!`
+      );
+    }
+  }
   if (interaction.commandName === "repo-1") {
     const url1 = "https://github.com/";
     interaction.reply(`Click here to redirect to Github link: ${url1}`);
